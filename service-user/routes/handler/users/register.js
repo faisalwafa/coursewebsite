@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
         name: 'string|empty:false',
         email: 'email|empty:false',
         password: 'string|min:6',
-        professional: 'string|optional'
+        profession: 'string|optional'
     }
 
     const validate = v.validate(req.body, schema); 
@@ -25,6 +25,9 @@ module.exports = async (req, res) => {
     })
 
     if(user) {
-        return res.status(409)
+        return res.status(409).json({
+            status: 'error',
+            message: 'email already exists'
+        })
     }
 }
