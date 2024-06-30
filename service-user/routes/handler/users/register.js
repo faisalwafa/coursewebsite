@@ -30,4 +30,23 @@ module.exports = async (req, res) => {
             message: 'email already exists'
         })
     }
+
+    const password = await bycrypt.hash(req.body.password, 10);
+
+    const data = {
+        password,
+        name: req.body.name,
+        email: req.body.email,
+        profession: req.body.profession,
+        role: 'student'
+    }
+
+    const createdUser = await User.create(data);
+
+    return res.json({
+        status: 'success',
+        data: {
+            id: createdUser.id
+        }
+    })
 }
