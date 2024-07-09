@@ -1,5 +1,11 @@
+const getUser = require('./getUser')
+const login = require('./login')
 const register = require('./register')
+const update = require('./update')
 
 module.exports = {
-    register
+    register,
+    login,
+    update,
+    getUser
 }
